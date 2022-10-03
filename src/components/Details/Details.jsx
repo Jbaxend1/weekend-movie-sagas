@@ -7,10 +7,13 @@ function Details () {
 
     const dispatch = useDispatch();
 
+    // needed for routing back to movie list
     const history = useHistory();
 
+    // access movie details from reducer
     const movie = useSelector(store => store.details);
 
+    // useSelector to access genres data
     const genres = useSelector(store => store.genres);
 
 

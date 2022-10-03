@@ -86,3 +86,6 @@ SELECT "name" FROM "genres"
 JOIN "movies_genres" ON "genres"."id" ="movies_genres"."genre_id"
 JOIN "movies" ON "movies_genres"."movie_id" = "movies"."id"
 WHERE "movies"."id" = 5;
+
+-- SELECT all genres
+SELECT * FROM "genres" ORDER BY "name" ASC;
