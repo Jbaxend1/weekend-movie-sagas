@@ -39,6 +39,7 @@ function* fetchGenres() {
     try {
         const genres = yield axios.get('/api/genre');
         console.log('get all:', genres.data)
+        // initiate reducer to store genres response
         yield put({ type: 'SET_GENRES', payload: genres.data })
     } catch {
         console.log('get genre error');

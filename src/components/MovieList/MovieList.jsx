@@ -2,7 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import { useHistory } from 'react-router-dom';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+
 
 function MovieList() {
 
@@ -26,7 +33,7 @@ function MovieList() {
         dispatch({ type: 'SELECT_MOVIE', payload: movie });
         // dispatch action to featureGenres generator function
         // for later use of getting specific movie genres
-        dispatch({ type: 'FEATURED_GENRES', payload: {id: movie.id } })
+        dispatch({ type: 'FEATURED_GENRES', payload: { id: movie.id } })
         // navigate to the featured movie details component
         history.push('/details');
     }
@@ -34,16 +41,21 @@ function MovieList() {
     return (
         <>
             <h1>MovieList</h1>
-            <section className="movies">
-                {movies.map(movie => {
-                    return (
-                        <div key={movie.id}>
-                            <h3>{movie.title}</h3>
-                            <img onClick={(event) => selectDetails(movie)} src={movie.poster} alt={movie.title} />
-                        </div>
-                    );
-                })}
-            </section>
+            <Container maxWidth='med'>
+                <Grid container spacing={4}>{
+                    movies.map(movie => {
+                        return (
+                            <Grid item xs={12} sm={3} key={movie.id}>
+                                <Card elevation={5} variant="outlined">
+                                    <Typography>{movie.title}</Typography>
+                                    <img onClick={(event) => selectDetails(movie)} src={movie.poster} />
+                                </Card>
+                            </Grid>
+                        );
+                    })
+                }
+                </Grid>
+            </Container>
         </>
 
     );

@@ -21,8 +21,10 @@
 ### GENRE ROUTER
 - [x] GET all Genres
 - [x] GET Genres by movie.id query
+- [x] Create SELECT and JOIN tables query
 
 ## GENERAL
 - [] Add Styling
-- [] Import Material UI
+- [x] Import Material UI
 - [] Create Header component?
+- [] Update Readme.md
