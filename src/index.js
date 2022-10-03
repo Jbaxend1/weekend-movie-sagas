@@ -53,12 +53,11 @@ const genres = (state = [], action) => {
 }
 
 const selectMovie = (state = [], action) => {
-    switch (action.type) {
-        case 'SELECT_MOVIE':
-            return action.payload;
-        default:
-            return state;
+    if (action.type === 'SELECT_MOVIE') {
+        return action.payload;
     }
+
+    return [...state, action.payload];
 }
 
 // Create one store that all components can use
