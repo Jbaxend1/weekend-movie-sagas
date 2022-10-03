@@ -15,6 +15,7 @@ function Details () {
             <h2>{movie.title}</h2>
             <img src={movie.poster} alt={movie.title}/>
             <h4>{movie.description}</h4>
+            <h2>Genres: </h2>
             <button onClick={() => history.push('/')}>Back to List</button>
         </>
 

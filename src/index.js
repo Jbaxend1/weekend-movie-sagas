@@ -29,6 +29,16 @@ function* fetchAllMovies() {
         
 }
 
+function* fetchGenres() {
+    try {
+        const genres = yield axios.get('/api/genres');
+        console.log('get all:', genres.data)
+        yield put({ type: 'SET_GENRES', payload: genres.data })
+    } catch {
+        console.log('get genre error')
+    }
+}
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
