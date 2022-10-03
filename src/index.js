@@ -11,9 +11,14 @@ import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
+
+// *** GENERATOR FUNCTIONS/WATCHER ***
+
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeEvery('FETCH_ALL_GENRES', fetchGenres);
+    yield takeEvery('FEATURED_GENRES', featureGenres);
 }
 
 function* fetchAllMovies() {
@@ -26,21 +31,34 @@ function* fetchAllMovies() {
     } catch {
         console.log('get all error');
     }
-        
+
 }
 
 function* fetchGenres() {
+    // get all genres from the database
     try {
-        const genres = yield axios.get('/api/genres');
+        const genres = yield axios.get('/api/genre');
         console.log('get all:', genres.data)
         yield put({ type: 'SET_GENRES', payload: genres.data })
     } catch {
-        console.log('get genre error')
+        console.log('get genre error');
     }
 }
 
+function* featureGenres(action) {
+    // get specific movie genre from database
+    try {
+        const genres = yield axios.get(`/api/genre/featured/${action.payload.id}`);
+        console.log('get specific:', genres.data);
+        yield put({ type: 'SET_FEATURED', payload: genres.data })
+    } catch {
+        console.log('get featured genres error');
+    }
+}
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
+
+// *** REDUCERS ***
 
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
@@ -56,6 +74,8 @@ const movies = (state = [], action) => {
 const genres = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES':
+            return action.payload;
+        case 'SET_FEATURED':
             return action.payload;
         default:
             return state;
@@ -87,7 +107,7 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={storeInstance}>
-        <App />
+            <App />
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')
