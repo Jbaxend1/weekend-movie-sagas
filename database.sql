@@ -79,3 +79,10 @@ VALUES
 (12,8), (12,9),           -- Social Net
 (13,4), (13,10), (13,6),  -- Titanic
 (14,3), (14,2), (14,4);   -- Toy Story
+
+
+-- Many to Many query test code to select by specific ID
+SELECT "name" FROM "genres"
+JOIN "movies_genres" ON "genres"."id" ="movies_genres"."genre_id"
+JOIN "movies" ON "movies_genres"."movie_id" = "movies"."id"
+WHERE "movies"."id" = 5;

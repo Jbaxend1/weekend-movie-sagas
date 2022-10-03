@@ -15,4 +15,14 @@ router.get('/', (req, res) => {
     })
 });
 
+router.get('/featured/:id', (req, res) => {
+  // query to join DB on genre.id and movie.id?
+  const query = `
+        SELECT "name" FROM "genres"
+        JOIN "movies_genres" ON "genres"."id" ="movies_genres"."genre_id"
+        JOIN "movies" ON "movies_genres"."movie_id" = "movies"."id"
+        WHERE "movies"."id" = $1;
+  `
+})
+
 module.exports = router;
