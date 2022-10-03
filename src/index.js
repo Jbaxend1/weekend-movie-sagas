@@ -45,10 +45,10 @@ function* fetchGenres() {
     }
 }
 
-function* featureGenres() {
+function* featureGenres(action) {
     // get specific movie genre from database
     try {
-        const genres = yield axios.get('/api/genre/featured');
+        const genres = yield axios.get(`/api/genre/featured/${action.payload.id}`);
         console.log('get specific:', genres.data);
         yield put({ type: 'SET_FEATURED', payload: genres.data })
     } catch {

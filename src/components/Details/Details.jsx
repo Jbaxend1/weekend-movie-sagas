@@ -22,7 +22,7 @@ function Details () {
             <h4>{movie.description}</h4>
             <h2>Genres:</h2>
              {
-                genres.map((genres) => {
+                genres.map(genres => {
                     return (
                     <li key={genres.id}>{genres.name}</li>
                     );

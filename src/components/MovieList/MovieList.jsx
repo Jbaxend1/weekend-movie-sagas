@@ -21,7 +21,7 @@ function MovieList() {
 
         dispatch({ type: 'SELECT_MOVIE', payload: movie });
 
-        dispatch({ type: 'FEATURED_GENRES', payload: movie.id })
+        dispatch({ type: 'FEATURED_GENRES', payload: {id: movie.id } })
 
         history.push('/details');
     }
