@@ -9,10 +9,15 @@ function MovieList() {
 
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
+    const history = useHistory();
 
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
+
+    const handleClick = (e) => {
+        
+    }
 
     return (
         <main>
