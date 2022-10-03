@@ -1,11 +1,17 @@
+import { useDispatch, useSelector } from 'react-redux';
+
+
 function Details () {
+
+    const movie = useSelector(store => store.details);
+
     return (
-        <main>
-            <h1>Movie Details</h1>
-            <section className="movie-details">
-                
-            </section>
-        </main>
+        <>
+            <h5>Movie Details</h5>
+            <h2>{movie.title}</h2>
+            <img src={movie.poster} alt={movie.title}/>
+            <h4>{movie.description}</h4>
+        </>
 
     );
 }
